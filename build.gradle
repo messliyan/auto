@@ -1,7 +1,15 @@
-apply plugin: 'java'
-apply plugin: 'maven-publish'
+plugins {
+    id 'maven-publish'
+    id 'java'
+}
+sourceCompatibility = '11'
 dependencies {
     compile gradleApi()
+    implementation "org.mybatis.generator:mybatis-generator-core:1.4.0"
+    implementation "org.postgresql:postgresql:42.2.5"
+}
+repositories {
+    mavenCentral()
 }
 publishing {
     repositories {

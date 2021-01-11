@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+dependencies {
+    compile gradleApi()
+}
+publishing {
+    repositories {
+        mavenCentral()
+    }
+    publications {
+        myApp(MavenPublication) {
+            groupId = 'com.yuan'
+            artifactId = 'auto-service'
+            version = '0.0.1'
+
+            from components.java
+        }
+    }
+}

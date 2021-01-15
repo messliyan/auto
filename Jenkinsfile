@@ -34,8 +34,14 @@ pipeline {
                    steps {
                        sh 'gradle -Dorg.gradle.daemon=false clean'
                        sh '''
-                           echo " ->（1）构建打包 (Fat Jar)"
-                           gradle -Dorg.gradle.daemon=false build -x compileTestJava
+                          TASK=":publishToMavenLocal"
+                           if gradle tasks --all | grep "$TASK"
+                           then
+                              echo " ->（1）发布到本地maven仓库 "
+                              gradle -Dorg.gradle.daemon=false publishToMavenLocal
+                           else
+                              echo 'no publishToMavenLocal task'
+                           fi
                        '''
                    }
                }

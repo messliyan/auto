@@ -34,8 +34,7 @@ pipeline {
                    steps {
                        sh 'gradle -Dorg.gradle.daemon=false clean'
                        sh '''
-                          TASK="publishToMavenLocal"
-                           if gradle tasks --all | grep "$TASK"
+                           if gradle tasks --all | grep "publishToMavenLocal"
                            then
                               echo '->（1）发布到本地maven仓库'
                               gradle -Dorg.gradle.daemon=false publishToMavenLocal
